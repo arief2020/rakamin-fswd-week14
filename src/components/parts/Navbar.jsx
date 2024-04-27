@@ -21,6 +21,7 @@ function Navbar() {
     });
     setIsLogin(true);
   };
+
   const handleLogout = async () => {
     await logout();
     setIsLogin(false);
@@ -28,7 +29,9 @@ function Navbar() {
   return (
     <div className="navbar bg-green-500">
       <div className="flex-1">
-        <a className="btn btn-ghost text-xl text-black">Book</a>
+        <button onClick={() => route.push('/')} className="btn btn-ghost text-xl text-black">
+          Book
+        </button>
       </div>
       <div className="flex-none gap-2">
         {isLogin ? (

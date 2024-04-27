@@ -3,10 +3,10 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: 'daisyui.com',
-        port: '',
-        pathname: '/images/stock/**'
+        protocol: 'http',
+        hostname: 'localhost',
+        port: '3000',
+        pathname: '//images/**'
       }
     ]
   }

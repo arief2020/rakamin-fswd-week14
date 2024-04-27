@@ -2,12 +2,9 @@ import React from 'react';
 
 import DetailBook from '@/components/page/DetailBook';
 
-function page() {
-  
-
-  return (
-    <DetailBook />
-  );
+function page({ params }) {
+  const { id } = params;
+  return <DetailBook id={id} />;
 }
 
 export default page;

@@ -34,8 +34,8 @@ function Login({ onSubmit }) {
           type="text"
           name="email"
           ref={emailRef}
-          className="text-black input my-2 w-full 
-                  border-2 border-slate-300 bg-whit  focus:border-black"
+          className="bg-whit input my-2 w-full 
+                  border-2 border-slate-300 text-black  focus:border-black"
         />
         <br />
         <label className="mt-5" htmlFor="password">

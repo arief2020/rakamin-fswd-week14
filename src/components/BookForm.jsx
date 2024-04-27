@@ -1,31 +1,22 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
+
+import { useRouter } from 'next/navigation';
+
+import { createBook } from '@/fetching/book';
 
 function BookForm() {
-  const [input, setInput] = useState({
-    title: '',
-    author: '',
-    publisher: '',
-    year: 0,
-    pages: 0
-  });
+  const router = useRouter();
 
-  const handleOnChange = (e) => {
-    const { value } = e.target;
-    setInput({
-      ...input,
-      [e.target.name]: value
-    });
-  };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // const { title, author, publisher, year, pages } = input;
-    console.log(input);
+    const formData = new FormData(e.target);
+    await createBook(formData);
+    router.push('/');
   };
   return (
-    <div className="m-5 rounded-lg border-2 p-4 text-slate-700 shadow-lg">
+    <form onSubmit={handleSubmit} className="m-5 rounded-lg border-2 p-4 text-slate-700 shadow-lg">
       <h3 className="bold text-center text-xl">Create Book</h3>
       <label className="mt-5" htmlFor="title">
         Title
@@ -35,8 +26,6 @@ function BookForm() {
         id="title"
         type="text"
         name="title"
-        value={input.title}
-        onChange={handleOnChange}
         className="input my-2 w-full 
                   border-2 border-slate-300 bg-white focus:border-black"
       />
@@ -49,8 +38,6 @@ function BookForm() {
         id="author"
         type="text"
         name="author"
-        value={input.author}
-        onChange={handleOnChange}
         className="input my-2 w-full 
                   border-2 border-slate-300 bg-white focus:border-black"
       />
@@ -63,8 +50,6 @@ function BookForm() {
         id="publisher"
         type="text"
         name="publisher"
-        value={input.publisher}
-        onChange={handleOnChange}
         className="input my-2 w-full 
                   border-2 border-slate-300 bg-white focus:border-black"
       />
@@ -75,11 +60,9 @@ function BookForm() {
       <br />
       <input
         id="year"
-        type="number"
+        type="text"
         name="year"
         min={1}
-        value={input.year}
-        onChange={handleOnChange}
         className="input my-2 w-full 
                   border-2 border-slate-300 bg-white focus:border-black"
       />
@@ -90,23 +73,26 @@ function BookForm() {
       <br />
       <input
         id="pages"
-        type="number"
+        type="text"
         name="pages"
         min={1}
-        value={input.pages}
-        onChange={handleOnChange}
         className="input my-2 w-full 
                   border-2 border-slate-300 bg-white focus:border-black"
       />
       <br />
       <p>Image</p>
-      <input type="file" className="file-input my-5 w-full max-w-xs bg-white" />
+      <input
+        id="image"
+        name="image"
+        type="file"
+        className="file-input my-5 w-full max-w-xs bg-white"
+      />
       <div className="flex justify-center gap-3">
-        <button onClick={handleSubmit} className="btn btn-primary px-16 text-white">
+        <button type="submit" className="btn btn-primary px-16 text-white">
           Create Book
         </button>
       </div>
-    </div>
+    </form>
   );
 }
 
